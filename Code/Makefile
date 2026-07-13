@@ -11,8 +11,8 @@ ifort ifort_seq ifort_omp          : export COMPILER_SKY = ifort
 #
 # ----- define libraries-----------------------------------------------------
 #
-seq omp debug seq_debug omp_debug ifort ifort_seq ifort_omp : export LIBS_SKY = -lfftw3 -llapack -lopenblas
-mpi mpi_debug mpi-omp                                       : export LIBS_SKY = -lfftw3 -lscalapack -llapack -lopenblas
+seq omp debug seq_debug omp_debug ifort ifort_seq ifort_omp : export LIBS_SKY = -L$(EBROOTFFTW)/lib -lfftw3 -L$(EBROOTOPENBLAS)/lib -lopenblas
+mpi mpi_debug mpi-omp                                       : export LIBS_SKY = -L$(EBROOTFFTW)/lib -lfftw3 -L$(EBROOTSCALAPACK)/lib -lscalapack -L$(EBROOTOPENBLAS)/lib -lopenblas
 apple apple_omp                                             : export LIBS_SKY = -lfftw3 -framework Accelerate -L/opt/homebrew/lib
 #
 # ----- define compiler flags and linker flags-------------------------------
