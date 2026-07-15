@@ -8,4 +8,4 @@
  &static nprot=82, nneut=126, 
   radinx=3.1,radiny=3.1,radinz=3.1,
   x0dmp=0.40,e0dmp=100.0,tdiag=T,tlarge=F,
-  maxiter=2000,serr=1D-5 /
+  maxiter=100,serr=1D-4 /

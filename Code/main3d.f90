@@ -78,7 +78,7 @@ PROGRAM tdhf3d
   ! Step 1: filename definitions
   !********************************************************************
   CALL init_all_mpi
-  OPEN(unit=05,file='for005',status='old',form='formatted')
+  OPEN(unit=05,file='for007',status='old',form='formatted')
   READ(5,files)
   !********************************************************************
   ! Step 2: read force definition and determine force
