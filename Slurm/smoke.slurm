@@ -1,7 +1,7 @@
 #!/bin/bash
-#SBATCH --job-name=Pb208_static_smoke
-#SBATCH --output=/mnt/home/jinlaure/scratch/logs/sky3d/Pb208_static_smoke_%j.out
-#SBATCH --error=/mnt/home/jinlaure/scratch/logs/sky3d/Pb208_static_smoke_%j.err
+#SBATCH --job-name=smoke
+#SBATCH --output=/mnt/home/jinlaure/scratch/logs/sky3d/smoke_%j.out
+#SBATCH --error=/mnt/home/jinlaure/scratch/logs/sky3d/smoke_%j.err
 #SBATCH --time=00:20:00
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
@@ -19,10 +19,10 @@ export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
 export OPENBLAS_NUM_THREADS=$SLURM_CPUS_PER_TASK
 
 ROOT="$SLURM_SUBMIT_DIR"
-CALC="Pb208_static_smoke"
+CALC="smoke"
 
-OUTDIR="/mnt/home/jinlaure/scratch/output/sky3d/$CALC"
-WORKDIR="/mnt/home/jinlaure/scratch/work/sky3d/work_$CALC_${SLURM_JOB_ID}"
+OUTDIR="/mnt/home/jinlaure/scratch/output/sky3d/${CALC}_${SLURM_JOB_ID}"
+WORKDIR="/mnt/home/jinlaure/scratch/work/sky3d/work_${CALC}_${SLURM_JOB_ID}"
 
 mkdir -p "$WORKDIR" "$OUTDIR"
 
@@ -31,7 +31,5 @@ cp "$ROOT/Test/Static/for007.static" "$WORKDIR/"
 cd "$WORKDIR"
 
 ln -s "$OUTDIR" "$ROOT/Test/Static/${CALC}"
-
-cd "$ROOT/Test/Static"
 
 /usr/bin/time -v "$ROOT/Code/sky3d.seq" < for007.static > for007.static.out 2> time_resource_usage.err
