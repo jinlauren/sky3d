@@ -24,10 +24,14 @@ CALC="Pb208_static_smoke"
 OUTDIR="/mnt/home/jinlaure/scratch/output/sky3d/$CALC"
 WORKDIR="/mnt/home/jinlaure/scratch/work/sky3d/work_$CALC_${SLURM_JOB_ID}"
 
-mkdir -p "$WORKDIR"
+mkdir -p "$WORKDIR" "$OUTDIR"
 
-ln -s "$OUTDIR" "$WORKDIR"
+cp "$ROOT/Test/Static/for007.static" "$WORKDIR/"
+
+cd "$WORKDIR"
+
+ln -s "$OUTDIR" "$ROOT/Test/Static/${CALC}"
 
 cd "$ROOT/Test/Static"
 
-../../Code/sky3d.seq < for007.static > for007.static.out
+/usr/bin/time -v "$ROOT/Code/sky3d.seq" < for007.static > for007.static.out 2> time_resource_usage.err
