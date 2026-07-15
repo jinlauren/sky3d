@@ -8,6 +8,8 @@
 #SBATCH --cpus-per-task=1
 #SBATCH --mem=4G
 
+set -euo pipefail
+
 module purge
 module load GCCcore/12.3.0
 module load OpenBLAS/0.3.23-GCC-12.3.0
@@ -19,11 +21,13 @@ export OPENBLAS_NUM_THREADS=$SLURM_CPUS_PER_TASK
 ROOT="$SLURM_SUBMIT_DIR"
 CALC="Pb208_static_smoke"
 
-OUTDIR="/mnt/home/jinlaure/scratch/output/skky3d/$CALC"
+OUTDIR="/mnt/home/jinlaure/scratch/output/sky3d/$CALC"
 WORKDIR="/mnt/home/jinlaure/scratch/work/sky3d/work_$CALC_${SLURM_JOB_ID}"
+
+mkdir -p "$WORKDIR"
 
 ln -s "$OUTDIR" "$WORKDIR"
 
-cd "Test/Static
+cd "$ROOT/Test/Static"
 
 ../../Code/sky3d.seq < for007.static > for007.static.out
