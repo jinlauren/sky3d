@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --job-name=smoke
-#SBATCH --output=/mnt/home/jinlaure/scratch/logs/sky3d/smoke_%j.out
-#SBATCH --error=/mnt/home/jinlaure/scratch/logs/sky3d/smoke_%j.err
+#SBATCH --output=/mnt/home/jinlaure/scratch/logs/sky3d/for005_%j.out
+#SBATCH --error=/mnt/home/jinlaure/scratch/logs/sky3d/for005_%j.err
 #SBATCH --time=00:20:00
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
@@ -19,14 +19,14 @@ export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
 export OPENBLAS_NUM_THREADS=$SLURM_CPUS_PER_TASK
 
 ROOT="$SLURM_SUBMIT_DIR"
-CALC="smoke"
+CALC="O16"
 
 OUTDIR="/mnt/home/jinlaure/scratch/output/sky3d/${CALC}_${SLURM_JOB_ID}"
 
 mkdir -p "$OUTDIR"
 
-cp "$ROOT/Test/Static/for007.static" "$OUTDIR/for007"
+cp "$ROOT/Test/Static/for005.static" "$OUTDIR/for005"
 
 cd "$OUTDIR"
 
-/usr/bin/time -v "$ROOT/Code/sky3d.seq" > for007.static.out 2> time_resource_usage.err
+/usr/bin/time -v "$ROOT/Code/sky3d.seq" > for005.static.out 2> time_resource_usage.err

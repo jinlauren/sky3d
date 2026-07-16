@@ -68,7 +68,8 @@ PROGRAM tdhf3d
   USE Coulomb, ONLY: coulinit
   USE User
   IMPLICIT NONE
-  INTEGER :: imode,nofsave
+  CHARACTER(LEN=256) :: input_file
+  INTEGER :: nargs
   !***********************************************************************
   NAMELIST /files/ wffile,converfile,monopolesfile,dipolesfile, &
        momentafile,energiesfile,quadrupolesfile,spinfile,extfieldfile
@@ -78,7 +79,16 @@ PROGRAM tdhf3d
   ! Step 1: filename definitions
   !********************************************************************
   CALL init_all_mpi
-  OPEN(unit=05,file='for007',status='old',form='formatted')
+
+  nargs = COMMAND_ARGUMENT_COUNT()
+
+  IF (nargs >= 1) THEN
+     CALL GET_COMMAND_ARGUMENT(1, input_file)
+  ELSE
+     input_file = 'for007'
+  END IF
+
+  OPEN(unit=05,file=TRIM(input_file),status='old',form='formatted')
   READ(5,files)
   !********************************************************************
   ! Step 2: read force definition and determine force
