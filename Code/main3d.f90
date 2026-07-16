@@ -67,9 +67,13 @@ PROGRAM tdhf3d
   USE Static, ONLY: getin_static,init_static,statichf,harmosc
   USE Coulomb, ONLY: coulinit
   USE User
-  IMPLICIT NONE
-  CHARACTER(LEN=256) :: input_file
+  
+  IMPLICIT NONE  
+
+  ! variable declarations
+  INTEGER :: imode, nof, nofsave
   INTEGER :: nargs
+  CHARACTER(LEN=256) :: input_file
   !***********************************************************************
   NAMELIST /files/ wffile,converfile,monopolesfile,dipolesfile, &
        momentafile,energiesfile,quadrupolesfile,spinfile,extfieldfile
