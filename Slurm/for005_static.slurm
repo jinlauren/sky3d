@@ -1,7 +1,7 @@
 #!/bin/bash
-#SBATCH --job-name=O16
-#SBATCH --output=/mnt/home/jinlaure/scratch/logs/sky3d/for005_%j.out
-#SBATCH --error=/mnt/home/jinlaure/scratch/logs/sky3d/for005_%j.err
+#SBATCH --job-name=O16_static
+#SBATCH --output=/mnt/home/jinlaure/scratch/logs/sky3d/for005_static_%j.out
+#SBATCH --error=/mnt/home/jinlaure/scratch/logs/sky3d/for005_static_%j.err
 #SBATCH --time=00:20:00
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
@@ -19,13 +19,13 @@ export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
 export OPENBLAS_NUM_THREADS=$SLURM_CPUS_PER_TASK
 
 ROOT="$SLURM_SUBMIT_DIR"
-CALC="O16"
+CALC="O16_static"
 
 OUTDIR="/mnt/home/jinlaure/scratch/output/sky3d/${CALC}_${SLURM_JOB_ID}"
 
 mkdir -p "$OUTDIR"
 
-cp "$ROOT/Test/Static/for005.static" "$OUTDIR/for005"
+cp "$ROOT/Test/Static/for005.static" "$OUTDIR/"
 
 cd "$OUTDIR"
 
