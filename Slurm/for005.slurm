@@ -1,5 +1,5 @@
 #!/bin/bash
-#SBATCH --job-name=smoke
+#SBATCH --job-name=O16
 #SBATCH --output=/mnt/home/jinlaure/scratch/logs/sky3d/for005_%j.out
 #SBATCH --error=/mnt/home/jinlaure/scratch/logs/sky3d/for005_%j.err
 #SBATCH --time=00:20:00
@@ -29,4 +29,6 @@ cp "$ROOT/Test/Static/for005.static" "$OUTDIR/for005"
 
 cd "$OUTDIR"
 
-/usr/bin/time -v "$ROOT/Code/sky3d.seq" > for005.static.out 2> time_resource_usage.err
+/usr/bin/time -v "$ROOT/Code/sky3d.seq" for005.static \
+> for005.static.out \
+2> time_resource_usage.err

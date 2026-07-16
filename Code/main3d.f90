@@ -71,7 +71,7 @@ PROGRAM tdhf3d
   IMPLICIT NONE  
 
   ! variable declarations
-  INTEGER :: imode, nof, nofsave
+  INTEGER :: imode, nofsave
   INTEGER :: nargs
   CHARACTER(LEN=256) :: input_file
   !***********************************************************************
